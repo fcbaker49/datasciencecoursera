@@ -3,6 +3,7 @@ This is the README file for Class Project for the Coursera Course "Getting and C
 
 The data set may be loaded by using the command:
 read.table("avgdata.dat")  [assumes avgdata.dat is in working directory]
+use the command read.table("https://github.com/fcbaker49/datasciencecoursera/blob/master/avgdata.dat") to read from github
 
 Please note that the data set is a 6 x 79 tidy data set as each variable is a single column, and each row is a single observation 
 
