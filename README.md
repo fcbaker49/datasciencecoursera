@@ -5,7 +5,7 @@ The data set may be loaded by using the command:
 read.table("avgdata.dat")  [assumes avgdata.dat is in working directory]
 use the command read.table("https://github.com/fcbaker49/datasciencecoursera/blob/master/avgdata.dat") to read from github
 
-Please note that the data set is a 6 x 79 tidy data set as each variable is a single column, and each row is a single observation 
+Please note that the data set is a tidy data set as each variable is a single column, and each row is a single observation 
 
 The script for running the file that generates the tidy data uses the projectrun() command.
 >source("run_analysis.R")
