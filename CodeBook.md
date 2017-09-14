@@ -23,7 +23,7 @@ tBodyAccJerkMean
 tBodyGyroMean
 tBodyGyroJerkMean
 
-For each of these, an average was taken over six potential activities: Laying, Sitting, Standing, Walking, Walking_Downstairs and Walking_Upstairs and presented in the tidy data set. 
+For each of these, an average was taken for each of 30 subjects over six potential activities: Laying, Sitting, Standing, Walking, Walking_Downstairs and Walking_Upstairs and presented in the tidy data set. 
 
 
 The complete list of variables of each feature vector is available is listed below. Variables with time in the name are in units of seconds, variables with freq are in units of Hertz.

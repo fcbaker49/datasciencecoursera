@@ -3,15 +3,8 @@ This is the README file for Class Project for the Coursera Course "Getting and C
 
 The data set may be loaded by using the command:
 read.table("avgdata.dat")  [assumes avgdata.dat is in working directory]
-use the command read.table("https://github.com/fcbaker49/datasciencecoursera/blob/master/avgdata.dat") to read from github
 
-Please note that the data set is a tidy data set as each variable is a single column, and each row is a single observation 
-
-The script for running the file that generates the tidy data uses the projectrun() command.
->source("run_analysis.R")
-> x <- projectrun()
-
-This function reads the data files from the home directory, performs merging and variable manipulation, downsizes the set of variables to the mean() and stddev() variables, renames the variables to more legible names, then performs means of the variables by activity. The result is writing a tidy data file to the home directory call "avgdata.txt."
+Please note that the data set is a 180 x 79 tidy data set as each variable is a single column, and each row is a single observation 
 
 The origin of the data for this project is as follows:
 ==================================================================

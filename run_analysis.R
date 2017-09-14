@@ -13,11 +13,17 @@ projectrun <- function(){
   ## 2947 observations of 561 variables
   testdata <- read.table("test/X_test.txt")
   
+  ## List of subject numbers (2947 numbers)
+  testsub <- read.table("test/subject_test.txt")
+  
   ## 2947 column lables for activity
   testdatlab <- read.table("test/y_test.txt")
   
   ## 7352 observations of 561 variables for training
   traindata <- read.table("train/X_train.txt")
+  
+  ## List of subject numbers
+  trainsub <- read.table("train/subject_train.txt")
   
   ## 7352 column levels for training activity
   traindatlab <- read.table("train/y_train.txt")
@@ -29,10 +35,12 @@ projectrun <- function(){
   ## Create the accumulated data set, alldata
   
   ## First add activities to test data and train data
-  alldata1 <- cbind(testdatlab,testdata)
+  alldata1 <- cbind(testdatlab,testsub,testdata)
   colnames(alldata1)[1] <- "Activity"
-  alldata2 <- cbind(traindatlab,traindata)
+  colnames(alldata1)[2] <- "Subject"
+  alldata2 <- cbind(traindatlab,trainsub,traindata)
   colnames(alldata2)[1] <- "Activity"
+  colnames(alldata2)[2] <- "Subject"
   
   ## now merge data set
   alldata <- rbind(alldata1, alldata2)
@@ -47,8 +55,9 @@ projectrun <- function(){
   alldata[,1] <- gsub("6", "Laying" , alldata$Activity)
   
   ## Extract only columns on mean and standard deviation
+  ## (also leave Activity and subject)
   stdormean <- colnames(alldata) == ".std." | colnames (alldata) == ".dev."
-  x0 <- 1
+  x0 <- c(1,2)
   x1 <- grep("std",names(alldata))
   x2 <- grep("mean",names(alldata))
   x <- c(x0, x1,x2)
@@ -57,6 +66,7 @@ projectrun <- function(){
   
   ## Apply descriptive names to columns
   descnames <- c("Activity",
+                 "Subject",
              "Body_Accel_X-Axis_time_mean",
              "Body_Accel_Y-Axis_time_mean", 
              "Body_Accel_Z-Axis_time_mean", 
@@ -138,20 +148,19 @@ projectrun <- function(){
              "Body_Body_Gyro_Jerk_Mag-meanFreq")
   names(alldata) <- descnames
   
-  
-  
   ## subset data to new tidy set that averages each actvity 
   ##and each subject
-  s <- split(alldata, alldata$Activity)
+  s <- split(alldata, list(alldata$Activity, alldata$Subject))
+  
   #newdata <- sapply(splitdata, function(x){
   #  colMeans(splitdata[, descnames[2:10]])
   #}
   #newdata <- colMeans(splitdata[1])
-  sp <- sapply(s, function(s) {colMeans(s[,descnames[2:80]])})
-  sp <- t(sp)
+  sp <- sapply(s, function(s) {colMeans(s[,descnames[3:81]])})
+  sp <- t(sp)  ##transpose
   
   ##write new tidy data file
-  write.table(sp, file = "avgdata.dat")
+  write.table(sp, file = "avgdata.txt", row.name=FALSE)
   sp
   
 }
